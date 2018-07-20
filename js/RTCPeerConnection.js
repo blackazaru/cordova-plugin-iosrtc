@@ -636,8 +636,6 @@ RTCPeerConnection.prototype.getStats = function () {
 				array.forEach(function (stat) {
 					res.push(new RTCStatsReport(stat));
 				});
-				
-				// resolve(new RTCStatsResponse(res));
 				resolve(res);
 			}
 
