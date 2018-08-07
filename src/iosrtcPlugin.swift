@@ -898,7 +898,7 @@ class iosrtcPlugin : CDVPlugin {
 			}
 			
 			
-			if(self.pluginMediaStreams.count < 1 || self.pluginMediaStreamTracks.count < 1 || self.pluginMediaStreams.count < 1 || streamId == nil) {
+			if(self.pluginMediaStreams.count < 1 || self.pluginMediaStreamTracks.count < 1 || self.pluginMediaStreams.count < 1 || localId == nil) {
 					return;
 			}
 			
