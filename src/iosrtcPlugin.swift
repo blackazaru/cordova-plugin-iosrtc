@@ -876,41 +876,45 @@ class iosrtcPlugin : CDVPlugin {
 			NSLog("iosrtcPlugin#freeCamera()")
 			
 			var localId:String?
-			var pcId:Int?
+			// var pcId:Int?
 			for (id, _) in self.pluginRTCPeerConnections {
 					localId = String(describing: self.pluginRTCPeerConnections[id]!.rtcPeerConnection.localStreams[0])
-					pcId = id
+					// pcId = id
+			}
+
+			if localId == nil {
+					return;
 			}
 			
 			var localVideoId:String?
-			var localAudioId:String?
+			// var localAudioId:String?
 			for (id, pluginMediaStream) in self.pluginMediaStreams {
 					NSLog("- PluginMediaStream %@", String(pluginMediaStream.rtcMediaStream.description))
 					if(String(pluginMediaStream.rtcMediaStream.description) == localId) {
 							localVideoId = self.pluginMediaStreams[id]!.videoTracks.values.first?.id
-							localAudioId = self.pluginMediaStreams[id]!.audioTracks.values.first?.id
+							// localAudioId = self.pluginMediaStreams[id]!.audioTracks.values.first?.id
 							localId = id
 					}
 			}
 			
 			
-			if(self.pluginMediaStreams.count < 1 || self.pluginMediaStreamTracks.count < 1 || self.pluginMediaStreams.count < 1) {
+			if(self.pluginMediaStreams.count < 1 || self.pluginMediaStreamTracks.count < 1 || self.pluginMediaStreams.count < 1 || streamId == nil) {
 					return;
 			}
 			
 			if let yourStream = self.pluginMediaStreams[localId!]?.rtcMediaStream {
-					if let yourAudioTrack = self.pluginMediaStreamTracks[localAudioId!]?.rtcMediaStreamTrack {
-							yourStream.removeAudioTrack(yourAudioTrack as! RTCAudioTrack)
-					}
+					// if let yourAudioTrack = self.pluginMediaStreamTracks[localAudioId!]?.rtcMediaStreamTrack {
+					// 		yourStream.removeAudioTrack(yourAudioTrack as! RTCAudioTrack)
+					// }
 					if let yourVideoTrack = self.pluginMediaStreamTracks[localVideoId!]?.rtcMediaStreamTrack {
 							yourStream.removeVideoTrack(yourVideoTrack as! RTCVideoTrack)
 					}
 			}
-			if let yourPC = self.pluginRTCPeerConnections[pcId!]?.rtcPeerConnection {
-					if let yourMediaStream = self.pluginMediaStreams[localId!]?.rtcMediaStream {
-							yourPC.remove(yourMediaStream)
-					}
-			}
+			// if let yourPC = self.pluginRTCPeerConnections[pcId!]?.rtcPeerConnection {
+			// 		if let yourMediaStream = self.pluginMediaStreams[localId!]?.rtcMediaStream {
+			// 				yourPC.remove(yourMediaStream)
+			// 		}
+			// }
 	}
 
 

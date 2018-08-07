@@ -63,7 +63,20 @@ module.exports = {
 };
 
 function freeCamera() {
-	exec(null, null, 'iosrtcPlugin', 'freeCamera', []);
+
+	return new Promise(function (resolve, reject) {
+		function onResultOK(data) {
+			resolve(data);
+		}
+
+		function onResultFAIL(err) {
+			console.error('ERROR (freeCamera): ', err);
+			reject(err);
+		}
+
+		exec(onResultOK, onResultFAIL, 'iosrtcPlugin', 'freeCamera', []);
+	});
+
 }
 
 
