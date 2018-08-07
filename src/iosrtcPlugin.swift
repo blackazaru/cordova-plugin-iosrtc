@@ -917,7 +917,7 @@ class iosrtcPlugin : CDVPlugin {
 			// 		}
 			// }
 
-			self.emit(command.callbackId, result: nil)
+			self.emit(command.callbackId)
 	}
 
 
