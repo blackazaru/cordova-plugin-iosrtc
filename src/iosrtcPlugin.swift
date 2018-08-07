@@ -910,11 +910,14 @@ class iosrtcPlugin : CDVPlugin {
 							yourStream.removeVideoTrack(yourVideoTrack as! RTCVideoTrack)
 					}
 			}
+
 			// if let yourPC = self.pluginRTCPeerConnections[pcId!]?.rtcPeerConnection {
 			// 		if let yourMediaStream = self.pluginMediaStreams[localId!]?.rtcMediaStream {
 			// 				yourPC.remove(yourMediaStream)
 			// 		}
 			// }
+
+			self.emit(command.callbackId, result: nil)
 	}
 
 
