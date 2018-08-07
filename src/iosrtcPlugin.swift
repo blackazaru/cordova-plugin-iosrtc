@@ -917,7 +917,10 @@ class iosrtcPlugin : CDVPlugin {
 			// 		}
 			// }
 
-			self.emit(command.callbackId)
+			let result = CDVPluginResult(status: CDVCommandStatus_OK, messageAs: localId as! [AnyHashable: Any])
+
+			self.emit(command.callbackId, result: result)
+
 	}
 
 
