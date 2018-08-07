@@ -2495,8 +2495,13 @@ module.exports = {
 	debug:                 _dereq_('debug'),
 
 	// Debug function to see what happens internally.
-	dump:                  dump
+	dump:                  dump,
+	freeCamera:            freeCamera
 };
+
+function freeCamera() {
+	exec(null, null, 'iosrtcPlugin', 'freeCamera', []);
+}
 
 
 domready(function () {
