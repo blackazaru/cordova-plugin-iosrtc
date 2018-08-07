@@ -906,9 +906,12 @@ class iosrtcPlugin : CDVPlugin {
 					// if let yourAudioTrack = self.pluginMediaStreamTracks[localAudioId!]?.rtcMediaStreamTrack {
 					// 		yourStream.removeAudioTrack(yourAudioTrack as! RTCAudioTrack)
 					// }
-					if let yourVideoTrack = self.pluginMediaStreamTracks[localVideoId!]?.rtcMediaStreamTrack {
-							yourStream.removeVideoTrack(yourVideoTrack as! RTCVideoTrack)
+					if localVideoId != nil {
+							if let yourVideoTrack = self.pluginMediaStreamTracks[localVideoId!]?.rtcMediaStreamTrack {
+									yourStream.removeVideoTrack(yourVideoTrack as! RTCVideoTrack)
+							}
 					}
+
 			}
 
 			// if let yourPC = self.pluginRTCPeerConnections[pcId!]?.rtcPeerConnection {
