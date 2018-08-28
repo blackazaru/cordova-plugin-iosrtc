@@ -934,6 +934,9 @@ class iosrtcPlugin : CDVPlugin {
 			}
 
 			if localId == nil {
+					let result = CDVPluginResult(status: CDVCommandStatus_OK, messageAs: "localId is nil")
+
+					self.emit(command.callbackId, result: result!)
 					return;
 			}
 			
@@ -950,6 +953,9 @@ class iosrtcPlugin : CDVPlugin {
 			
 			
 			if(self.pluginMediaStreams.count < 1 || self.pluginMediaStreamTracks.count < 1 || self.pluginMediaStreams.count < 1 || localId == nil) {
+					let result = CDVPluginResult(status: CDVCommandStatus_OK, messageAs: "Plugin has not the streams or tracks")
+
+					self.emit(command.callbackId, result: result!)
 					return;
 			}
 			
