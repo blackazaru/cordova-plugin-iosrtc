@@ -923,7 +923,59 @@ class iosrtcPlugin : CDVPlugin {
 			let result = CDVPluginResult(status: CDVCommandStatus_OK, messageAs: "OK")
 
 			self.emit(command.callbackId, result: result!)
+	}
 
+		func freeAudio(_ command: CDVInvokedUrlCommand) {
+			NSLog("iosrtcPlugin#freeCamera()")
+			
+			var localId:String?
+			for (id, _) in self.pluginRTCPeerConnections {
+					localId = String(describing: self.pluginRTCPeerConnections[id]!.rtcPeerConnection.localStreams[0])
+			}
+
+			if localId == nil {
+					return;
+			}
+			
+			// var localVideoId:String?
+			var localAudioId:String?
+			for (id, pluginMediaStream) in self.pluginMediaStreams {
+					NSLog("- PluginMediaStream %@", String(pluginMediaStream.rtcMediaStream.description))
+					if(String(pluginMediaStream.rtcMediaStream.description) == localId) {
+							// localVideoId = self.pluginMediaStreams[id]!.videoTracks.values.first?.id
+							localAudioId = self.pluginMediaStreams[id]!.audioTracks.values.first?.id
+							localId = id
+					}
+			}
+			
+			
+			if(self.pluginMediaStreams.count < 1 || self.pluginMediaStreamTracks.count < 1 || self.pluginMediaStreams.count < 1 || localId == nil) {
+					return;
+			}
+			
+			if let yourStream = self.pluginMediaStreams[localId!]?.rtcMediaStream {
+				if localAudioId != nil {
+					if let yourAudioTrack = self.pluginMediaStreamTracks[localAudioId!]?.rtcMediaStreamTrack {
+							yourStream.removeAudioTrack(yourAudioTrack as! RTCAudioTrack)
+					}
+				}
+					// if localVideoId != nil {
+					// 		if let yourVideoTrack = self.pluginMediaStreamTracks[localVideoId!]?.rtcMediaStreamTrack {
+					// 				yourStream.removeVideoTrack(yourVideoTrack as! RTCVideoTrack)
+					// 		}
+					// }
+
+			}
+
+			// if let yourPC = self.pluginRTCPeerConnections[pcId!]?.rtcPeerConnection {
+			// 		if let yourMediaStream = self.pluginMediaStreams[localId!]?.rtcMediaStream {
+			// 				yourPC.remove(yourMediaStream)
+			// 		}
+			// }
+
+			let result = CDVPluginResult(status: CDVCommandStatus_OK, messageAs: "OK")
+
+			self.emit(command.callbackId, result: result!)
 	}
 
 

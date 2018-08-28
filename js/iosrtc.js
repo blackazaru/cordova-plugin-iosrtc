@@ -59,7 +59,8 @@ module.exports = {
 
 	// Debug function to see what happens internally.
 	dump:                  dump,
-	freeCamera:            freeCamera
+	freeCamera:            freeCamera,
+	freeAudio:            freeAudio
 };
 
 function freeCamera() {
@@ -78,6 +79,25 @@ function freeCamera() {
 	});
 
 }
+
+function freeAudio() {
+
+	return new Promise(function (resolve, reject) {
+		function onResultOK(data) {
+			resolve(data);
+		}
+
+		function onResultFAIL(err) {
+			console.error('ERROR (freeAudio): ', err);
+			reject(err);
+		}
+
+		exec(onResultOK, onResultFAIL, 'iosrtcPlugin', 'freeAudio', []);
+	});
+
+}
+
+
 
 
 domready(function () {
