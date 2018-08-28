@@ -130,9 +130,6 @@ function refreshVideos() {
 	}
 }
 
-
-
-
 function registerGlobals() {
 	debug('registerGlobals()');
 
