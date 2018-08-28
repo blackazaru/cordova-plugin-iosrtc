@@ -97,6 +97,10 @@ function freeAudio() {
 
 }
 
+function cleanUIView() {
+	exec(null, null, 'iosrtcPlugin', 'MediaStreamRenderer_close', []);
+}
+
 
 
 
@@ -118,6 +122,8 @@ function refreshVideos() {
 		}
 	}
 }
+
+
 
 
 function registerGlobals() {
