@@ -925,8 +925,8 @@ class iosrtcPlugin : CDVPlugin {
 			self.emit(command.callbackId, result: result!)
 	}
 
-		func freeAudio(_ command: CDVInvokedUrlCommand) {
-			NSLog("iosrtcPlugin#freeCamera()")
+	func freeAudio(_ command: CDVInvokedUrlCommand) {
+			NSLog("iosrtcPlugin#freeAUDIO()")
 			
 			var localId:String?
 			for (id, _) in self.pluginRTCPeerConnections {
