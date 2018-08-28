@@ -99,10 +99,16 @@ function freeAudio() {
 }
 
 function cleanUIView() {
-	exec(null, null, 'iosrtcPlugin', 'MediaStreamRenderer_close', []);
+	debug('cleanUIView()');
+
+	var id;
+
+	for (id in mediaStreamRenderers) {
+		if (mediaStreamRenderers.hasOwnProperty(id)) {
+			mediaStreamRenderers[id].close();
+		}
+	}
 }
-
-
 
 
 domready(function () {
