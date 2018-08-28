@@ -60,7 +60,8 @@ module.exports = {
 	// Debug function to see what happens internally.
 	dump:                  dump,
 	freeCamera:            freeCamera,
-	freeAudio:            freeAudio
+	freeAudio:            freeAudio,
+	cleanUIView: 					cleanUIView
 };
 
 function freeCamera() {
